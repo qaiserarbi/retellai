@@ -1,0 +1,95 @@
+plugins {
+	id 'java-library'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'maven-publish'
+}
+
+group = 'io.github.qaiserarbi'
+version = '0.1.0'
+description = 'Unofficial Java SDK for the Retell AI REST API'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+	withJavadocJar()
+	withSourcesJar()
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencyManagement {
+	imports {
+		// Tracks Spring Framework 7 + Jackson 3 versions used by Spring Boot 4.0.6.
+		mavenBom 'org.springframework.boot:spring-boot-dependencies:4.0.6'
+	}
+}
+
+dependencies {
+	api 'org.springframework:spring-web'
+	implementation 'org.springframework:spring-context'
+	implementation 'tools.jackson.core:jackson-databind'
+	api 'com.fasterxml.jackson.core:jackson-annotations'
+	implementation 'org.slf4j:slf4j-api'
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.compilerArgs << '-parameters'
+}
+
+tasks.withType(Javadoc).configureEach {
+	options.encoding = 'UTF-8'
+	options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+
+			// Dependency versions come from the Spring Boot BOM at build time, so the direct
+			// dependencies have no declared version. Stamp the concrete resolved versions into
+			// the published POM / module metadata so consumers get usable coordinates.
+			versionMapping {
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
+				}
+				usage('java-runtime') {
+					fromResolutionResult()
+				}
+			}
+
+			pom {
+				name = 'Retell AI Java SDK'
+				description = project.description
+				url = 'https://github.com/qaiserarbi/retellai'
+				licenses {
+					license {
+						name = 'The Apache License, Version 2.0'
+						url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id = 'qaiserarbi'
+						name = 'Qaiser Arbi'
+					}
+				}
+				scm {
+					connection = 'scm:git:https://github.com/qaiserarbi/retellai.git'
+					developerConnection = 'scm:git:ssh://git@github.com/qaiserarbi/retellai.git'
+					url = 'https://github.com/qaiserarbi/retellai'
+				}
+			}
+		}
+	}
+}
