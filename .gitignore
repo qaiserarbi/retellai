@@ -41,3 +41,7 @@ out/
 
 ### Scratch ###
 .scratch/
+
+### Secrets — never commit ###
+*.asc
+secring.gpg
