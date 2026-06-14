@@ -60,7 +60,7 @@ mavenPublishing {
     coordinates(
         "io.github.qaiserarbi",
         "retellai",
-        "0.1.0"
+        "0.2.0"
     )
 
     pom {
