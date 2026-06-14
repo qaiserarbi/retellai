@@ -33,7 +33,7 @@ Then depend on it:
 
 ```groovy
 // build.gradle
-implementation 'io.github.qaiserarbi:retellai:0.1.0'
+implementation 'io.github.qaiserarbi:retellai:0.2.0'
 ```
 
 ## Quick start
@@ -57,25 +57,21 @@ AgentResponse agent = client.agents().getAgent("agent_oBeDLoLOeuAbiuaMFXRtDOLriT
 
 ### Placing an outbound phone call
 
-Request bodies are `record`s whose optional fields are nullable — pass `null` for anything you
-don't need:
+Request bodies are `record`s, and every request type ships a fluent builder so you only set the
+fields you need (unset fields default to `null`):
 
 ```java
 import io.github.qaiserarbi.retellai.model.call.CreatePhoneCallRequest;
 import io.github.qaiserarbi.retellai.model.call.V2PhoneCallResponse;
 
 V2PhoneCallResponse call = client.calls().createPhoneCall(
-        new CreatePhoneCallRequest(
-                "+14157774444",   // fromNumber
-                "+12137774445",   // toNumber
-                null,             // overrideAgentId
-                null,             // overrideAgentVersion
-                null,             // agentOverride
-                null,             // metadata
-                null,             // retellLlmDynamicVariables
-                null,             // customSipHeaders
-                null));           // ignoreE164Validation
+        CreatePhoneCallRequest.builder()
+                .fromNumber("+14157774444")
+                .toNumber("+12137774445")
+                .build());
 ```
+
+The canonical constructor is still available if you prefer passing every field positionally.
 
 ### Creating an agent
 
@@ -88,12 +84,14 @@ import io.github.qaiserarbi.retellai.model.common.ResponseEngine;
 import io.github.qaiserarbi.retellai.model.common.ResponseEngineRetellLm;
 
 ResponseEngine engine = new ResponseEngineRetellLm("llm_234sdertfsdsfsdf", null);
-// Construct via the canonical constructor (remaining optional fields = null).
-AgentResponse created = client.agents().createAgent(buildAgentRequest(engine, "retell-Cimo"));
-```
 
-> Note: fluent builders for the largest request records (e.g. `AgentRequest`,
-> `RetellLlmRequest`) are a planned ergonomics enhancement.
+AgentRequest request = AgentRequest.builder()
+        .responseEngine(engine)
+        .voiceId("11labs-Adrian")
+        .agentName("retell-Cimo")
+        .build();
+AgentResponse created = client.agents().createAgent(request);
+```
 
 ### Working with polymorphic responses
 
