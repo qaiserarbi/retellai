@@ -12,4 +12,32 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public record SearchCommunityVoiceRequest(
         CommunityVoiceProvider voiceProvider,
         String searchQuery
-) {}
+) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link SearchCommunityVoiceRequest}. */
+    public static final class Builder {
+        private CommunityVoiceProvider voiceProvider;
+        private String searchQuery;
+
+        private Builder() {
+        }
+
+        public Builder voiceProvider(CommunityVoiceProvider voiceProvider) {
+            this.voiceProvider = voiceProvider;
+            return this;
+        }
+
+        public Builder searchQuery(String searchQuery) {
+            this.searchQuery = searchQuery;
+            return this;
+        }
+
+        public SearchCommunityVoiceRequest build() {
+            return new SearchCommunityVoiceRequest(voiceProvider, searchQuery);
+        }
+    }
+}

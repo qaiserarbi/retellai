@@ -11,6 +11,33 @@ public record UpdateLiveCallRequest(
         FieldsToOverride fieldsToOverride,
         CallControl callControl) {
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link UpdateLiveCallRequest}. */
+    public static final class Builder {
+        private FieldsToOverride fieldsToOverride;
+        private CallControl callControl;
+
+        private Builder() {
+        }
+
+        public Builder fieldsToOverride(FieldsToOverride fieldsToOverride) {
+            this.fieldsToOverride = fieldsToOverride;
+            return this;
+        }
+
+        public Builder callControl(CallControl callControl) {
+            this.callControl = callControl;
+            return this;
+        }
+
+        public UpdateLiveCallRequest build() {
+            return new UpdateLiveCallRequest(fieldsToOverride, callControl);
+        }
+    }
+
     /** Call fields to override on the running call. */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public record FieldsToOverride(

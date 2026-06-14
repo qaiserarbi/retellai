@@ -58,4 +58,150 @@ public record ChatAgentRequest(
         GuardrailConfig guardrailConfig,
         ChatHandbookConfig handbookConfig,
         String timezone) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link ChatAgentRequest}. */
+    public static final class Builder {
+        private ResponseEngine responseEngine;
+        private String agentName;
+        private String autoCloseMessage;
+        private Integer endChatAfterSilenceMs;
+        private Object language;
+        private String webhookUrl;
+        private List<ChatWebhookEvent> webhookEvents;
+        private Integer webhookTimeoutMs;
+        private ChatDataStorageSetting dataStorageSetting;
+        private Integer dataStorageRetentionDays;
+        private Boolean optInSignedUrl;
+        private Integer signedUrlExpirationMs;
+        private List<PostChatAnalysisData> postChatAnalysisData;
+        private NullableLLMModel postChatAnalysisModel;
+        private String analysisSuccessfulPrompt;
+        private String analysisSummaryPrompt;
+        private String analysisUserSentimentPrompt;
+        private PIIConfig piiConfig;
+        private GuardrailConfig guardrailConfig;
+        private ChatHandbookConfig handbookConfig;
+        private String timezone;
+
+        private Builder() {
+        }
+
+        public Builder responseEngine(ResponseEngine responseEngine) {
+            this.responseEngine = responseEngine;
+            return this;
+        }
+
+        public Builder agentName(String agentName) {
+            this.agentName = agentName;
+            return this;
+        }
+
+        public Builder autoCloseMessage(String autoCloseMessage) {
+            this.autoCloseMessage = autoCloseMessage;
+            return this;
+        }
+
+        public Builder endChatAfterSilenceMs(Integer endChatAfterSilenceMs) {
+            this.endChatAfterSilenceMs = endChatAfterSilenceMs;
+            return this;
+        }
+
+        public Builder language(Object language) {
+            this.language = language;
+            return this;
+        }
+
+        public Builder webhookUrl(String webhookUrl) {
+            this.webhookUrl = webhookUrl;
+            return this;
+        }
+
+        public Builder webhookEvents(List<ChatWebhookEvent> webhookEvents) {
+            this.webhookEvents = webhookEvents;
+            return this;
+        }
+
+        public Builder webhookTimeoutMs(Integer webhookTimeoutMs) {
+            this.webhookTimeoutMs = webhookTimeoutMs;
+            return this;
+        }
+
+        public Builder dataStorageSetting(ChatDataStorageSetting dataStorageSetting) {
+            this.dataStorageSetting = dataStorageSetting;
+            return this;
+        }
+
+        public Builder dataStorageRetentionDays(Integer dataStorageRetentionDays) {
+            this.dataStorageRetentionDays = dataStorageRetentionDays;
+            return this;
+        }
+
+        public Builder optInSignedUrl(Boolean optInSignedUrl) {
+            this.optInSignedUrl = optInSignedUrl;
+            return this;
+        }
+
+        public Builder signedUrlExpirationMs(Integer signedUrlExpirationMs) {
+            this.signedUrlExpirationMs = signedUrlExpirationMs;
+            return this;
+        }
+
+        public Builder postChatAnalysisData(List<PostChatAnalysisData> postChatAnalysisData) {
+            this.postChatAnalysisData = postChatAnalysisData;
+            return this;
+        }
+
+        public Builder postChatAnalysisModel(NullableLLMModel postChatAnalysisModel) {
+            this.postChatAnalysisModel = postChatAnalysisModel;
+            return this;
+        }
+
+        public Builder analysisSuccessfulPrompt(String analysisSuccessfulPrompt) {
+            this.analysisSuccessfulPrompt = analysisSuccessfulPrompt;
+            return this;
+        }
+
+        public Builder analysisSummaryPrompt(String analysisSummaryPrompt) {
+            this.analysisSummaryPrompt = analysisSummaryPrompt;
+            return this;
+        }
+
+        public Builder analysisUserSentimentPrompt(String analysisUserSentimentPrompt) {
+            this.analysisUserSentimentPrompt = analysisUserSentimentPrompt;
+            return this;
+        }
+
+        public Builder piiConfig(PIIConfig piiConfig) {
+            this.piiConfig = piiConfig;
+            return this;
+        }
+
+        public Builder guardrailConfig(GuardrailConfig guardrailConfig) {
+            this.guardrailConfig = guardrailConfig;
+            return this;
+        }
+
+        public Builder handbookConfig(ChatHandbookConfig handbookConfig) {
+            this.handbookConfig = handbookConfig;
+            return this;
+        }
+
+        public Builder timezone(String timezone) {
+            this.timezone = timezone;
+            return this;
+        }
+
+        public ChatAgentRequest build() {
+            return new ChatAgentRequest(responseEngine, agentName, autoCloseMessage,
+                    endChatAfterSilenceMs, language, webhookUrl, webhookEvents, webhookTimeoutMs,
+                    dataStorageSetting, dataStorageRetentionDays, optInSignedUrl,
+                    signedUrlExpirationMs, postChatAnalysisData, postChatAnalysisModel,
+                    analysisSuccessfulPrompt, analysisSummaryPrompt, analysisUserSentimentPrompt,
+                    piiConfig, guardrailConfig, handbookConfig, timezone);
+        }
+    }
 }

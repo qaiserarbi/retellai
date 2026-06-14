@@ -9,4 +9,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record CreateAgentVersionRequest(Integer baseVersion) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link CreateAgentVersionRequest}. */
+    public static final class Builder {
+        private Integer baseVersion;
+
+        private Builder() {
+        }
+
+        public Builder baseVersion(Integer baseVersion) {
+            this.baseVersion = baseVersion;
+            return this;
+        }
+
+        public CreateAgentVersionRequest build() {
+            return new CreateAgentVersionRequest(baseVersion);
+        }
+    }
 }

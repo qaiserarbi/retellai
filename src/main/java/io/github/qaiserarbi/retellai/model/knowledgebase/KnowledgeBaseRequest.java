@@ -27,4 +27,55 @@ public record KnowledgeBaseRequest(
     Integer maxChunkSize,
     Integer minChunkSize
 ) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link KnowledgeBaseRequest}. */
+    public static final class Builder {
+        private String knowledgeBaseName;
+        private List<KnowledgeBaseTextSource> knowledgeBaseTexts;
+        private List<String> knowledgeBaseUrls;
+        private Boolean enableAutoRefresh;
+        private Integer maxChunkSize;
+        private Integer minChunkSize;
+
+        private Builder() {
+        }
+
+        public Builder knowledgeBaseName(String knowledgeBaseName) {
+            this.knowledgeBaseName = knowledgeBaseName;
+            return this;
+        }
+
+        public Builder knowledgeBaseTexts(List<KnowledgeBaseTextSource> knowledgeBaseTexts) {
+            this.knowledgeBaseTexts = knowledgeBaseTexts;
+            return this;
+        }
+
+        public Builder knowledgeBaseUrls(List<String> knowledgeBaseUrls) {
+            this.knowledgeBaseUrls = knowledgeBaseUrls;
+            return this;
+        }
+
+        public Builder enableAutoRefresh(Boolean enableAutoRefresh) {
+            this.enableAutoRefresh = enableAutoRefresh;
+            return this;
+        }
+
+        public Builder maxChunkSize(Integer maxChunkSize) {
+            this.maxChunkSize = maxChunkSize;
+            return this;
+        }
+
+        public Builder minChunkSize(Integer minChunkSize) {
+            this.minChunkSize = minChunkSize;
+            return this;
+        }
+
+        public KnowledgeBaseRequest build() {
+            return new KnowledgeBaseRequest(knowledgeBaseName, knowledgeBaseTexts, knowledgeBaseUrls, enableAutoRefresh, maxChunkSize, minChunkSize);
+        }
+    }
 }

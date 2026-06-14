@@ -33,4 +33,92 @@ public record ImportPhoneNumberRequest(
         List<String> allowedInboundCountryList,
         List<String> allowedOutboundCountryList,
         String transport
-) {}
+) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link ImportPhoneNumberRequest}. */
+    public static final class Builder {
+        private String phoneNumber;
+        private Boolean ignoreE164Validation;
+        private String terminationUri;
+        private String sipTrunkAuthUsername;
+        private String sipTrunkAuthPassword;
+        private List<AgentWeight> inboundAgents;
+        private List<AgentWeight> outboundAgents;
+        private String nickname;
+        private String inboundWebhookUrl;
+        private List<String> allowedInboundCountryList;
+        private List<String> allowedOutboundCountryList;
+        private String transport;
+
+        private Builder() {
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder ignoreE164Validation(Boolean ignoreE164Validation) {
+            this.ignoreE164Validation = ignoreE164Validation;
+            return this;
+        }
+
+        public Builder terminationUri(String terminationUri) {
+            this.terminationUri = terminationUri;
+            return this;
+        }
+
+        public Builder sipTrunkAuthUsername(String sipTrunkAuthUsername) {
+            this.sipTrunkAuthUsername = sipTrunkAuthUsername;
+            return this;
+        }
+
+        public Builder sipTrunkAuthPassword(String sipTrunkAuthPassword) {
+            this.sipTrunkAuthPassword = sipTrunkAuthPassword;
+            return this;
+        }
+
+        public Builder inboundAgents(List<AgentWeight> inboundAgents) {
+            this.inboundAgents = inboundAgents;
+            return this;
+        }
+
+        public Builder outboundAgents(List<AgentWeight> outboundAgents) {
+            this.outboundAgents = outboundAgents;
+            return this;
+        }
+
+        public Builder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public Builder inboundWebhookUrl(String inboundWebhookUrl) {
+            this.inboundWebhookUrl = inboundWebhookUrl;
+            return this;
+        }
+
+        public Builder allowedInboundCountryList(List<String> allowedInboundCountryList) {
+            this.allowedInboundCountryList = allowedInboundCountryList;
+            return this;
+        }
+
+        public Builder allowedOutboundCountryList(List<String> allowedOutboundCountryList) {
+            this.allowedOutboundCountryList = allowedOutboundCountryList;
+            return this;
+        }
+
+        public Builder transport(String transport) {
+            this.transport = transport;
+            return this;
+        }
+
+        public ImportPhoneNumberRequest build() {
+            return new ImportPhoneNumberRequest(phoneNumber, ignoreE164Validation, terminationUri, sipTrunkAuthUsername, sipTrunkAuthPassword, inboundAgents, outboundAgents, nickname, inboundWebhookUrl, allowedInboundCountryList, allowedOutboundCountryList, transport);
+        }
+    }
+}

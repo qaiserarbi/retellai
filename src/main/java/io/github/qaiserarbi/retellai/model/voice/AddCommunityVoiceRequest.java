@@ -16,4 +16,44 @@ public record AddCommunityVoiceRequest(
         String providerVoiceId,
         String voiceName,
         String publicUserId
-) {}
+) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link AddCommunityVoiceRequest}. */
+    public static final class Builder {
+        private CommunityVoiceProvider voiceProvider;
+        private String providerVoiceId;
+        private String voiceName;
+        private String publicUserId;
+
+        private Builder() {
+        }
+
+        public Builder voiceProvider(CommunityVoiceProvider voiceProvider) {
+            this.voiceProvider = voiceProvider;
+            return this;
+        }
+
+        public Builder providerVoiceId(String providerVoiceId) {
+            this.providerVoiceId = providerVoiceId;
+            return this;
+        }
+
+        public Builder voiceName(String voiceName) {
+            this.voiceName = voiceName;
+            return this;
+        }
+
+        public Builder publicUserId(String publicUserId) {
+            this.publicUserId = publicUserId;
+            return this;
+        }
+
+        public AddCommunityVoiceRequest build() {
+            return new AddCommunityVoiceRequest(voiceProvider, providerVoiceId, voiceName, publicUserId);
+        }
+    }
+}

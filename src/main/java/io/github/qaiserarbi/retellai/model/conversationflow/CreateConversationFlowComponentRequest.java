@@ -28,4 +28,68 @@ public record CreateConversationFlowComponentRequest(
         DisplayPosition beginTagDisplayPosition,
         List<Note> notes
 ) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link CreateConversationFlowComponentRequest}. */
+    public static final class Builder {
+        private String name;
+        private Boolean flexMode;
+        private List<Map<String, Object>> tools;
+        private List<Map<String, Object>> mcps;
+        private List<ConversationFlowNode> nodes;
+        private String startNodeId;
+        private DisplayPosition beginTagDisplayPosition;
+        private List<Note> notes;
+
+        private Builder() {
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder flexMode(Boolean flexMode) {
+            this.flexMode = flexMode;
+            return this;
+        }
+
+        public Builder tools(List<Map<String, Object>> tools) {
+            this.tools = tools;
+            return this;
+        }
+
+        public Builder mcps(List<Map<String, Object>> mcps) {
+            this.mcps = mcps;
+            return this;
+        }
+
+        public Builder nodes(List<ConversationFlowNode> nodes) {
+            this.nodes = nodes;
+            return this;
+        }
+
+        public Builder startNodeId(String startNodeId) {
+            this.startNodeId = startNodeId;
+            return this;
+        }
+
+        public Builder beginTagDisplayPosition(DisplayPosition beginTagDisplayPosition) {
+            this.beginTagDisplayPosition = beginTagDisplayPosition;
+            return this;
+        }
+
+        public Builder notes(List<Note> notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public CreateConversationFlowComponentRequest build() {
+            return new CreateConversationFlowComponentRequest(name, flexMode, tools, mcps, nodes,
+                    startNodeId, beginTagDisplayPosition, notes);
+        }
+    }
 }

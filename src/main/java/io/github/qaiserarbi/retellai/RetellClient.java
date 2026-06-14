@@ -163,7 +163,7 @@ public final class RetellClient {
         private String baseUrl = DEFAULT_BASE_URL;
         private Duration connectTimeout = Duration.ofSeconds(10);
         private Duration readTimeout = Duration.ofSeconds(120);
-        private String userAgent = "retell-java/0.1.0";
+        private String userAgent = "retell-java/0.2.0";
         private RetryPolicy retryPolicy = RetryPolicy.defaults();
         private JsonMapper jsonMapper;
         private Consumer<RestClient.Builder> restClientCustomizer;

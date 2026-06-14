@@ -44,4 +44,118 @@ public record CreateRetellLlmRequest(
         Map<String, String> defaultDynamicVariables,
         List<MCP> mcps
 ) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link CreateRetellLlmRequest}. */
+    public static final class Builder {
+        private NullableLLMModel model;
+        private S2sModel s2sModel;
+        private Double modelTemperature;
+        private Boolean modelHighPriority;
+        private Boolean toolCallStrictMode;
+        private List<String> knowledgeBaseIds;
+        private KBConfig kbConfig;
+        private StartSpeaker startSpeaker;
+        private Integer beginAfterUserSilenceMs;
+        private String beginMessage;
+        private String generalPrompt;
+        private List<Tool> generalTools;
+        private List<State> states;
+        private String startingState;
+        private Map<String, String> defaultDynamicVariables;
+        private List<MCP> mcps;
+
+        private Builder() {
+        }
+
+        public Builder model(NullableLLMModel model) {
+            this.model = model;
+            return this;
+        }
+
+        public Builder s2sModel(S2sModel s2sModel) {
+            this.s2sModel = s2sModel;
+            return this;
+        }
+
+        public Builder modelTemperature(Double modelTemperature) {
+            this.modelTemperature = modelTemperature;
+            return this;
+        }
+
+        public Builder modelHighPriority(Boolean modelHighPriority) {
+            this.modelHighPriority = modelHighPriority;
+            return this;
+        }
+
+        public Builder toolCallStrictMode(Boolean toolCallStrictMode) {
+            this.toolCallStrictMode = toolCallStrictMode;
+            return this;
+        }
+
+        public Builder knowledgeBaseIds(List<String> knowledgeBaseIds) {
+            this.knowledgeBaseIds = knowledgeBaseIds;
+            return this;
+        }
+
+        public Builder kbConfig(KBConfig kbConfig) {
+            this.kbConfig = kbConfig;
+            return this;
+        }
+
+        public Builder startSpeaker(StartSpeaker startSpeaker) {
+            this.startSpeaker = startSpeaker;
+            return this;
+        }
+
+        public Builder beginAfterUserSilenceMs(Integer beginAfterUserSilenceMs) {
+            this.beginAfterUserSilenceMs = beginAfterUserSilenceMs;
+            return this;
+        }
+
+        public Builder beginMessage(String beginMessage) {
+            this.beginMessage = beginMessage;
+            return this;
+        }
+
+        public Builder generalPrompt(String generalPrompt) {
+            this.generalPrompt = generalPrompt;
+            return this;
+        }
+
+        public Builder generalTools(List<Tool> generalTools) {
+            this.generalTools = generalTools;
+            return this;
+        }
+
+        public Builder states(List<State> states) {
+            this.states = states;
+            return this;
+        }
+
+        public Builder startingState(String startingState) {
+            this.startingState = startingState;
+            return this;
+        }
+
+        public Builder defaultDynamicVariables(Map<String, String> defaultDynamicVariables) {
+            this.defaultDynamicVariables = defaultDynamicVariables;
+            return this;
+        }
+
+        public Builder mcps(List<MCP> mcps) {
+            this.mcps = mcps;
+            return this;
+        }
+
+        public CreateRetellLlmRequest build() {
+            return new CreateRetellLlmRequest(model, s2sModel, modelTemperature, modelHighPriority,
+                    toolCallStrictMode, knowledgeBaseIds, kbConfig, startSpeaker, beginAfterUserSilenceMs,
+                    beginMessage, generalPrompt, generalTools, states, startingState,
+                    defaultDynamicVariables, mcps);
+        }
+    }
 }

@@ -20,4 +20,56 @@ public record ListChatsV3Request(
         Integer skip,
         String paginationKey,
         Boolean includeTotal) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link ListChatsV3Request}. */
+    public static final class Builder {
+        private ChatFilter filterCriteria;
+        private ChatSortOrder sortOrder;
+        private Integer limit;
+        private Integer skip;
+        private String paginationKey;
+        private Boolean includeTotal;
+
+        private Builder() {
+        }
+
+        public Builder filterCriteria(ChatFilter filterCriteria) {
+            this.filterCriteria = filterCriteria;
+            return this;
+        }
+
+        public Builder sortOrder(ChatSortOrder sortOrder) {
+            this.sortOrder = sortOrder;
+            return this;
+        }
+
+        public Builder limit(Integer limit) {
+            this.limit = limit;
+            return this;
+        }
+
+        public Builder skip(Integer skip) {
+            this.skip = skip;
+            return this;
+        }
+
+        public Builder paginationKey(String paginationKey) {
+            this.paginationKey = paginationKey;
+            return this;
+        }
+
+        public Builder includeTotal(Boolean includeTotal) {
+            this.includeTotal = includeTotal;
+            return this;
+        }
+
+        public ListChatsV3Request build() {
+            return new ListChatsV3Request(filterCriteria, sortOrder, limit, skip, paginationKey,
+                    includeTotal);
+        }
+    }
 }

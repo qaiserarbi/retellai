@@ -14,4 +14,37 @@ public record AgentOverrideRequest(
         Map<String, Object> agent,
         Map<String, Object> retellLlm,
         Map<String, Object> conversationFlow) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link AgentOverrideRequest}. */
+    public static final class Builder {
+        private Map<String, Object> agent;
+        private Map<String, Object> retellLlm;
+        private Map<String, Object> conversationFlow;
+
+        private Builder() {
+        }
+
+        public Builder agent(Map<String, Object> agent) {
+            this.agent = agent;
+            return this;
+        }
+
+        public Builder retellLlm(Map<String, Object> retellLlm) {
+            this.retellLlm = retellLlm;
+            return this;
+        }
+
+        public Builder conversationFlow(Map<String, Object> conversationFlow) {
+            this.conversationFlow = conversationFlow;
+            return this;
+        }
+
+        public AgentOverrideRequest build() {
+            return new AgentOverrideRequest(agent, retellLlm, conversationFlow);
+        }
+    }
 }

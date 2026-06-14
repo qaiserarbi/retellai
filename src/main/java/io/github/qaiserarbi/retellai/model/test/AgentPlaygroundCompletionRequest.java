@@ -26,4 +26,55 @@ public record AgentPlaygroundCompletionRequest(
         String currentNodeId,
         String componentId
 ) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link AgentPlaygroundCompletionRequest}. */
+    public static final class Builder {
+        private List<ChatMessageInput> messages;
+        private Map<String, String> dynamicVariables;
+        private List<ToolMock> toolMocks;
+        private String currentState;
+        private String currentNodeId;
+        private String componentId;
+
+        private Builder() {
+        }
+
+        public Builder messages(List<ChatMessageInput> messages) {
+            this.messages = messages;
+            return this;
+        }
+
+        public Builder dynamicVariables(Map<String, String> dynamicVariables) {
+            this.dynamicVariables = dynamicVariables;
+            return this;
+        }
+
+        public Builder toolMocks(List<ToolMock> toolMocks) {
+            this.toolMocks = toolMocks;
+            return this;
+        }
+
+        public Builder currentState(String currentState) {
+            this.currentState = currentState;
+            return this;
+        }
+
+        public Builder currentNodeId(String currentNodeId) {
+            this.currentNodeId = currentNodeId;
+            return this;
+        }
+
+        public Builder componentId(String componentId) {
+            this.componentId = componentId;
+            return this;
+        }
+
+        public AgentPlaygroundCompletionRequest build() {
+            return new AgentPlaygroundCompletionRequest(messages, dynamicVariables, toolMocks, currentState, currentNodeId, componentId);
+        }
+    }
 }

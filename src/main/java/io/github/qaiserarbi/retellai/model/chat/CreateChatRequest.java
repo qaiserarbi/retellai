@@ -18,4 +18,44 @@ public record CreateChatRequest(
         AgentVersionReference agentVersion,
         Map<String, Object> metadata,
         Map<String, String> retellLlmDynamicVariables) {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Fluent builder for {@link CreateChatRequest}. */
+    public static final class Builder {
+        private String agentId;
+        private AgentVersionReference agentVersion;
+        private Map<String, Object> metadata;
+        private Map<String, String> retellLlmDynamicVariables;
+
+        private Builder() {
+        }
+
+        public Builder agentId(String agentId) {
+            this.agentId = agentId;
+            return this;
+        }
+
+        public Builder agentVersion(AgentVersionReference agentVersion) {
+            this.agentVersion = agentVersion;
+            return this;
+        }
+
+        public Builder metadata(Map<String, Object> metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        public Builder retellLlmDynamicVariables(Map<String, String> retellLlmDynamicVariables) {
+            this.retellLlmDynamicVariables = retellLlmDynamicVariables;
+            return this;
+        }
+
+        public CreateChatRequest build() {
+            return new CreateChatRequest(agentId, agentVersion, metadata,
+                    retellLlmDynamicVariables);
+        }
+    }
 }
